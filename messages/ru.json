@@ -1,0 +1,23 @@
+{
+	"Dashboard": {
+		"header": {
+			"title": "Обзор",
+			"searchPlaceholder": "Поиск..."
+		},
+		"statistics": {
+			"activeProjects": "Активные Проекты",
+			"onGoingProjects": "Текущие проекты",
+			"workingHours": "Рабочие часы",
+			"projectStatistic": "Статистика Проекта",
+			"yearly": "Годовая",
+			"monthly": "Ежемесячная"
+		},
+		"tasks": {
+			"lastTasks": "Последние задачи",
+			"all": "Все",
+			"not-started": "Не начато",
+			"in-progress": "В процессе",
+			"done": "Завершено"
+		}
+	}
+}

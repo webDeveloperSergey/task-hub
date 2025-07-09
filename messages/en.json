@@ -1,0 +1,23 @@
+{
+	"Dashboard": {
+		"header": {
+			"title": "Dashboard",
+			"searchPlaceholder": "Search something..."
+		},
+		"statistics": {
+			"activeProjects": "Active Projects",
+			"onGoingProjects": "On Going Projects",
+			"workingHours": "Working Hours",
+			"projectStatistic": "Project Statistic",
+			"yearly": "Yearly",
+			"monthly": "Monthly"
+		},
+		"tasks": {
+			"lastTasks": "Last Tasks",
+			"all": "All",
+			"not-started": "Not Started",
+			"in-progress": "In Progress",
+			"done": "Done"
+		}
+	}
+}
