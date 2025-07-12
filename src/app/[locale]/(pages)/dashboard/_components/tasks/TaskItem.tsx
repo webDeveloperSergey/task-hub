@@ -1,8 +1,11 @@
+import { Pages } from '@/app/config/pages'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Avatar, AvatarGroup, Button, Tooltip } from '@heroui/react'
 import { Icon } from '@iconify/react'
 import dayjs from 'dayjs'
+import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 import type { ITask } from './types/tasks.type'
 
 type Props = {
@@ -10,6 +13,8 @@ type Props = {
 }
 
 export function TaskItem({ task }: Props) {
+	const tDashboard = useTranslations('Dashboard.tasks')
+
 	const completedSubtasks = task.subTasks.filter(
 		subTask => subTask.isCompleted
 	).length
@@ -30,7 +35,10 @@ export function TaskItem({ task }: Props) {
 						<h3 className='font-medium text-sm'>{task.title}</h3>
 						<span className='text-xs text-gray-400'>
 							{/* TODO: Check for valid entry */}
-							Due: {dayjs(task.dueDate).diff(dayjs(), 'day')} days
+
+							{tDashboard('due', {
+								days: dayjs(task.dueDate).diff(dayjs(), 'day'),
+							})}
 						</span>
 					</div>
 				</div>
@@ -70,24 +78,25 @@ export function TaskItem({ task }: Props) {
 						showArrow
 						size='sm'
 						color='primary'
-						content={'Add new subTask'}
+						content={tDashboard('addTask')}
 					>
 						<Button color='primary' size='sm' radius='full' isIconOnly>
 							<Icon icon='hugeicons:plus-sign' className='text-xl' />
 						</Button>
 					</Tooltip>
 
-					<Tooltip showArrow size='sm' color='primary' content={'Edit card'}>
-						<Button
-							className='border-1'
-							color='primary'
-							variant='bordered'
-							size='sm'
-							radius='full'
-							isIconOnly
+					<Tooltip
+						showArrow
+						size='sm'
+						color='primary'
+						content={tDashboard('editProject')}
+					>
+						<Link
+							href={Pages.TASK_EDIT(task.id)}
+							className='p-1.5 text-primary border rounded-full hover:opacity-70 transition-opacity'
 						>
 							<Icon icon='hugeicons:pencil-edit-01' className='text-xl' />
-						</Button>
+						</Link>
 					</Tooltip>
 				</div>
 			</CardFooter>

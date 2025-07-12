@@ -1,6 +1,6 @@
 import { USERS } from '@/app/[locale]/(pages)/dashboard/users.data'
 import dayjs from 'dayjs'
-import type { ITask, TTaskStatus } from '../types/tasks.type'
+import type { IDueSorting, ITask, TTaskStatus } from '../types/tasks.type'
 
 export const TASKS: ITask[] = [
 	{
@@ -69,4 +69,17 @@ export const STATUSES_TASK_TABS: TTaskStatus[] = [
 	'not-started',
 	'in-progress',
 	'done',
+]
+
+export const DUE_SORTING: IDueSorting[] = [
+	{
+		value: 'asc',
+		label: 'dueAscSort',
+		icon: 'hugeicons:sort-by-up-02',
+	},
+	{
+		value: 'desc',
+		label: 'dueDescSort',
+		icon: 'hugeicons:sort-by-down-02',
+	},
 ]

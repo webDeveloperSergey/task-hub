@@ -1,5 +1,17 @@
 {
 	"Dashboard": {
+		"menu": {
+			"account": "Аккаунт",
+			"mainMenu": "Главное меню",
+			"projects": "Проекты",
+			"dashboard": "Обзор",
+			"messages": "Сообщения",
+			"statistics": "Статистика",
+			"team": "Команда",
+			"schedule": "Расписание",
+			"report": "Отчет",
+			"settings": "Настройки"
+		},
 		"header": {
 			"title": "Обзор",
 			"searchPlaceholder": "Поиск..."
@@ -17,7 +29,13 @@
 			"all": "Все",
 			"not-started": "Не начато",
 			"in-progress": "В процессе",
-			"done": "Завершено"
+			"done": "Завершено",
+			"dueAscSort": "По возрастанию срока",
+			"dueDescSort": "По убыванию срокаа",
+			"due": "Дедлайн: {days} дней",
+			"editProject": "Отредактировать проект",
+			"addTask": "Добавить задачу",
+			"notFoundTaskWhitStatus": "Для этого статуса задач не найдено."
 		}
 	}
 }

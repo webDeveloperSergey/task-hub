@@ -1,9 +1,12 @@
 import { Chip } from '@heroui/react'
 import { Icon } from '@iconify/react'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { MAIN_MENU } from '../data/main-menu.data'
 
 export function Menu() {
+	const tDashboard = useTranslations('Dashboard.menu')
+
 	return (
 		<div className='flex flex-col gap-4 text-gray-500 pl-2'>
 			{MAIN_MENU.map((link, index) => (
@@ -14,10 +17,10 @@ export function Menu() {
 				>
 					<span className='flex items-center gap-x-2 text-sm '>
 						<Icon icon={link.icon} className='text-xl' />
-						<span>{link.label}</span>
+						<span>{tDashboard(link.label)}</span>
 					</span>
 
-					{link.label === 'Messages' && (
+					{link.label === 'messages' && (
 						<Chip className='text-primary dark:text-white bg-light-primary text-xs font-medium rounded-lg'>
 							4
 						</Chip>

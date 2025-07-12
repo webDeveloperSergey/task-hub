@@ -1,6 +1,4 @@
 import type { IProfile } from '@/components/Sidebar/types/profile.type'
-import type { LucideIcon } from 'lucide-react'
-import type { ReactNode } from 'react'
 
 export interface ISubTask {
 	id: string
@@ -19,3 +17,11 @@ export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 }
 
 export type TTaskStatus = 'all' | 'not-started' | 'in-progress' | 'done'
+
+export interface IDueSorting {
+	value: TSortBy
+	label: string
+	icon: string
+}
+
+export type TSortBy = 'asc' | 'desc'

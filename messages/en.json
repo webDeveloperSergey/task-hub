@@ -1,5 +1,17 @@
 {
 	"Dashboard": {
+		"menu": {
+			"account": "Account",
+			"mainMenu": "Main Menu",
+			"projects": "Projects",
+			"dashboard": "Dashboard",
+			"messages": "Messages",
+			"statistics": "Statistics",
+			"team": "Team",
+			"schedule": "Schedule",
+			"report": "Report",
+			"settings": "Settings"
+		},
 		"header": {
 			"title": "Dashboard",
 			"searchPlaceholder": "Search something..."
@@ -17,7 +29,13 @@
 			"all": "All",
 			"not-started": "Not Started",
 			"in-progress": "In Progress",
-			"done": "Done"
+			"done": "Done",
+			"dueAscSort": "Ascending date",
+			"dueDescSort": "Descending date",
+			"due": "Due: {days} days",
+			"editProject": "Edit project",
+			"addTask": "Add task",
+			"notFoundTaskWhitStatus": "No tasks found for this status."
 		}
 	}
 }
