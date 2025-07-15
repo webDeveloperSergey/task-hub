@@ -38,7 +38,6 @@ export default function LocaleSwitcher() {
 			onSelectionChange={selectedKeys => changeLocale(selectedKeys)}
 			items={localeOptionsData}
 			renderValue={items => {
-				console.log(items, 'items')
 				return items.map(item => (
 					<div key={item.key} className='flex items-center gap-2'>
 						<Icon

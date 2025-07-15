@@ -1,8 +1,8 @@
+import { TYPES_STAT, type IProjectStat } from '@/types/projects.type'
 import { formatMinutes } from '@/utils/format-minutes'
 import cn from 'clsx'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { TYPES_STAT, type IProjectStat } from './types/project-stats.type'
 
 interface Props {
 	projectStat: IProjectStat

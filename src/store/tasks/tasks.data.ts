@@ -1,6 +1,6 @@
 import { USERS } from '@/app/[locale]/(pages)/dashboard/users.data'
+import type { IDueSorting, ITask, TTaskStatus } from '@/types/tasks.type'
 import dayjs from 'dayjs'
-import type { IDueSorting, ITask, TTaskStatus } from '../types/tasks.type'
 
 export const TASKS: ITask[] = [
 	{

@@ -1,12 +1,12 @@
 import { Pages } from '@/app/config/pages'
 import { ProgressBar } from '@/components/ui/ProgressBar'
+import type { ITask } from '@/types/tasks.type'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Avatar, AvatarGroup, Button, Tooltip } from '@heroui/react'
 import { Icon } from '@iconify/react'
 import dayjs from 'dayjs'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import type { ITask } from './types/tasks.type'
 
 type Props = {
 	task: ITask

@@ -1,29 +1,24 @@
+import { useTasksStore } from '@/store/tasks/tasks.store'
 import { Select, SelectItem, type SharedSelection } from '@heroui/react'
 import { Icon } from '@iconify/react'
 import { useTranslations } from 'next-intl'
-import { useState, type Dispatch, type SetStateAction } from 'react'
-import { DUE_SORTING } from './data/tasks.data'
-import type { IDueSorting } from './types/tasks.type'
 
-interface Props {
-	currentSortByDueDate: IDueSorting
-	setCurrentSortByDueDate: Dispatch<SetStateAction<IDueSorting>>
-}
-
-export default function SortBySelect({
-	currentSortByDueDate,
-	setCurrentSortByDueDate,
-}: Props) {
+export default function SortBySelect() {
 	const tDashboard = useTranslations('Dashboard.tasks')
 
-	const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(
-		new Set([currentSortByDueDate.label])
+	// === Get data from Store
+	const dueSorting = useTasksStore(state => state.dueSorting)
+
+	const currentSortByDueDate = useTasksStore(
+		state => state.currentSortByDueDate
 	)
+	const setCurrentSortByDueDate = useTasksStore(
+		state => state.setCurrentSortByDueDate
+	)
+	// ===
 
 	const changeSortBy = (keys: SharedSelection) => {
-		setSelectedKeys(keys)
-
-		const currentSortBy = DUE_SORTING.find(
+		const currentSortBy = dueSorting.find(
 			sortBy => sortBy.value === keys.currentKey
 		)
 
@@ -37,9 +32,10 @@ export default function SortBySelect({
 			classNames={{
 				trigger: 'bg-content1 w-45 cursor-pointer',
 			}}
-			defaultSelectedKeys={['asc']}
+			selectedKeys={[currentSortByDueDate.value]}
 			onSelectionChange={selectedKeys => changeSortBy(selectedKeys)}
-			items={DUE_SORTING}
+			items={dueSorting}
+			disallowEmptySelection
 			renderValue={items => {
 				return items.map(item => (
 					<div key={item.key} className='flex items-center gap-2'>

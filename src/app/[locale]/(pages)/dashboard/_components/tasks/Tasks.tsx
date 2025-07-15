@@ -1,46 +1,21 @@
+import { useTasksStore } from '@/store/tasks/tasks.store'
+import type { TTaskStatus } from '@/types/tasks.type'
 import { Tab, Tabs } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import { useMemo, useState } from 'react'
-import { DUE_SORTING, STATUSES_TASK_TABS, TASKS } from './data/tasks.data'
 import SortBySelect from './SortBySelect'
 import { TaskItem } from './TaskItem'
-import type { IDueSorting, TTaskStatus } from './types/tasks.type'
 
 export function Tasks() {
 	const tDashboard = useTranslations('Dashboard.tasks')
 
-	const [currentTaskStatus, setCurrentTaskStatus] = useState<TTaskStatus>('all')
-	const [currentSortByDueDate, setCurrentSortByDueDate] = useState<IDueSorting>(
-		DUE_SORTING[0]
+	// === Get data from Store
+	const filteredTasks = useTasksStore(state => state.filteredTasks)
+	const currentTaskStatus = useTasksStore(state => state.currentTaskStatus)
+	const statusesTaskTabs = useTasksStore(state => state.statusesTaskTabs)
+	const setCurrentTaskStatus = useTasksStore(
+		state => state.setCurrentTaskStatus
 	)
-
-	const filteredTasks = useMemo(() => {
-		const filtered = TASKS.filter(task => {
-			switch (currentTaskStatus) {
-				case 'not-started':
-					return task.subTasks.every(subTask => !subTask.isCompleted)
-				case 'in-progress':
-					return task.subTasks.some(subTask => !subTask.isCompleted)
-				case 'done':
-					return task.subTasks.every(subTask => subTask.isCompleted)
-				default:
-					return true
-			}
-		})
-
-		const sortedTasks = filtered.sort((a, b) => {
-			const dueDateA = new Date(a.dueDate).getTime()
-			const dueDateB = new Date(b.dueDate).getTime()
-
-			if (currentSortByDueDate.value === 'asc') {
-				return dueDateA - dueDateB
-			} else {
-				return dueDateB - dueDateA
-			}
-		})
-
-		return sortedTasks
-	}, [currentTaskStatus, currentSortByDueDate])
+	// ===
 
 	return (
 		<div className='flex flex-col gap-6'>
@@ -63,7 +38,7 @@ export function Tasks() {
 						selectedKey={currentTaskStatus}
 						onSelectionChange={key => setCurrentTaskStatus(key as TTaskStatus)}
 					>
-						{STATUSES_TASK_TABS.map(status => (
+						{statusesTaskTabs.map(status => (
 							<Tab
 								key={status}
 								title={tDashboard(status)}
@@ -72,10 +47,7 @@ export function Tasks() {
 						))}
 					</Tabs>
 
-					<SortBySelect
-						currentSortByDueDate={currentSortByDueDate}
-						setCurrentSortByDueDate={setCurrentSortByDueDate}
-					/>
+					<SortBySelect />
 				</div>
 			</div>
 

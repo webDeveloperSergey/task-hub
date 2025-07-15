@@ -1,4 +1,5 @@
 import { CardHeading } from '@/components/ui/CardHeading'
+import { useProjectsStore } from '@/store/projects/projects.store'
 import {
 	Button,
 	cn,
@@ -10,31 +11,24 @@ import {
 } from '@heroui/react'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useState, type Dispatch, type SetStateAction } from 'react'
-import { staticPeriods } from './data/project-chart.data'
-import type { IStatisticPeriod } from './types/chart.types'
+import { useState } from 'react'
 
-interface Props {
-	currentStaticPeriod: IStatisticPeriod
-	setCurrentStaticPeriod: Dispatch<SetStateAction<IStatisticPeriod>>
-}
-
-export function ProjectChartHeader({
-	currentStaticPeriod,
-	setCurrentStaticPeriod,
-}: Props) {
+export function ProjectChartHeader({}) {
 	const tDashboard = useTranslations('Dashboard.statistics')
 
-	const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(
-		new Set([currentStaticPeriod.label])
+	// === Get data from Store
+	const currentStaticPeriod = useProjectsStore(
+		state => state.currentStaticPeriod
 	)
+	const setCurrentStaticPeriod = useProjectsStore(
+		state => state.setCurrentStaticPeriod
+	)
+	const staticPeriods = useProjectsStore(state => state.staticPeriods)
+	// ===
+
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false)
 
-	const selectedValue = Array.from(selectedKeys).join(', ').replace(/_/g, '')
-
 	const setCurrentPeriod = (keys: SharedSelection) => {
-		setSelectedKeys(keys)
-
 		const currentPeriod = staticPeriods.find(
 			staticPeriod => staticPeriod.label === keys.currentKey
 		)
@@ -63,13 +57,13 @@ export function ProjectChartHeader({
 							/>
 						}
 					>
-						{tDashboard(selectedValue.toLowerCase())}
+						{tDashboard(currentStaticPeriod.value.toLowerCase())}
 					</Button>
 				</DropdownTrigger>
 				<DropdownMenu
 					disallowEmptySelection
 					aria-label='Single selection example'
-					selectedKeys={selectedKeys}
+					selectedKeys={[currentStaticPeriod.label]}
 					selectionMode='single'
 					variant='flat'
 					onSelectionChange={keys => setCurrentPeriod(keys)}

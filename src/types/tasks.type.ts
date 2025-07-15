@@ -1,4 +1,5 @@
 import type { IProfile } from '@/components/Sidebar/types/profile.type'
+import type { TSortBy } from './sorting.type'
 
 export interface ISubTask {
 	id: string
@@ -23,5 +24,3 @@ export interface IDueSorting {
 	label: string
 	icon: string
 }
-
-export type TSortBy = 'asc' | 'desc'

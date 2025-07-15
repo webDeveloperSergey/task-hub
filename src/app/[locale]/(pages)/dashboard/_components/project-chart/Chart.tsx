@@ -1,3 +1,4 @@
+import { useProjectsStore } from '@/store/projects/projects.store'
 import { useTheme } from 'next-themes'
 import { useMemo } from 'react'
 import {
@@ -11,14 +12,21 @@ import {
 	YAxis,
 } from 'recharts'
 import { ProjectChartTooltip } from './ProjectChartTooltip'
-import type { IChartDataPoint } from './types/chart.types'
 
-interface Props {
-	dataChart: IChartDataPoint[]
-}
-
-export function Chart({ dataChart }: Props) {
+export function Chart() {
 	const { theme } = useTheme()
+
+	// === Get data from Store
+	const currentStaticPeriod = useProjectsStore(
+		state => state.currentStaticPeriod
+	)
+	const yearlyData = useProjectsStore(state => state.yearlyData)
+	const monthlyData = useProjectsStore(state => state.monthlyData)
+	// === Get data from Store
+
+	const dataChart =
+		currentStaticPeriod.label === 'Yearly' ? yearlyData : monthlyData
+
 	const maxData = useMemo(() => {
 		if (!dataChart || dataChart.length === 0) return
 
