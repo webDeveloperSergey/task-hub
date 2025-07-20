@@ -1,3 +1,5 @@
+import { PublicPages } from '@/app/config/public-pages'
+import { createClient } from '@/utils/supabase/client'
 import {
 	Dropdown,
 	DropdownItem,
@@ -7,8 +9,16 @@ import {
 	User,
 } from '@heroui/react'
 import { Icon } from '@iconify/react'
+import { useRouter } from 'next/navigation'
 
 export function Account() {
+	const router = useRouter()
+
+	const signOut = async () => {
+		const { error } = await createClient().auth.signOut()
+		if (!error) router.push(PublicPages.LOGIN)
+	}
+
 	return (
 		// <div className='flex justify-between items-center bg-[#ede9fd] dark:bg-[#2e2e2e] py-2 px-2.5 text-xs rounded-full'>
 		// 	<div className='flex gap-2'>
@@ -68,6 +78,7 @@ export function Account() {
 						Help & Feedback
 					</DropdownItem>
 					<DropdownItem
+						onPress={signOut}
 						className='text-danger'
 						startContent={
 							<Icon

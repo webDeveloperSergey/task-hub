@@ -1,4 +1,4 @@
-import { Pages } from '@/app/config/pages'
+import { DashboardPages } from '@/app/config/dashboard-pages'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import type { ITask } from '@/types/tasks.type'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
@@ -92,7 +92,7 @@ export function TaskItem({ task }: Props) {
 						content={tDashboard('editProject')}
 					>
 						<Link
-							href={Pages.TASK_EDIT(task.id)}
+							href={DashboardPages.TASK_EDIT(task.id)}
 							className='p-1.5 text-primary border rounded-full hover:opacity-70 transition-opacity'
 						>
 							<Icon icon='hugeicons:pencil-edit-01' className='text-xl' />

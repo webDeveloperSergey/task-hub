@@ -3,16 +3,16 @@
 import LocaleSwitcher from '@/components/LocaleSwitcher'
 import { Card, Image } from '@heroui/react'
 import dynamic from 'next/dynamic'
-import { Login } from './Login'
+import { LoginForm } from './LoginForm'
 const DynamicThemeToggle = dynamic(
 	() => import('@/components/ui/ThemeToggle').then(mod => mod.ThemeToggle),
 	{ ssr: false }
 )
 
-export function AuthForm() {
+export function AuthPage() {
 	return (
 		<div className='flex h-screen px-12'>
-			<Card className='grid grid-cols-[0.8fr_1fr] max-w-300 max-h-200 m-auto'>
+			<Card className='grid grid-cols-[0.8fr_1fr] max-w-300 max-h-180 m-auto'>
 				<div className='flex flex-col w-full items-center pt-25 gap-10'>
 					<div>
 						<h1 className='text-4xl font-bold'>Welcom back</h1>
@@ -21,7 +21,7 @@ export function AuthForm() {
 						</p>
 					</div>
 
-					<Login />
+					<LoginForm />
 				</div>
 
 				<div className='relative'>

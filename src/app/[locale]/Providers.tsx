@@ -1,5 +1,5 @@
 'use client'
-import { HeroUIProvider } from '@heroui/react'
+import { HeroUIProvider, ToastProvider } from '@heroui/react'
 import {
 	IntlError,
 	IntlErrorCode,
@@ -38,6 +38,8 @@ export function Providers({
 }: PropsWithChildren<Props>) {
 	return (
 		<HeroUIProvider>
+			<ToastProvider />
+
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
 				<NextIntlClientProvider
 					timeZone='Europe/Moscow'

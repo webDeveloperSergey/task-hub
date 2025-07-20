@@ -1,4 +1,4 @@
-import { Pages } from '@/app/config/pages'
+import { DashboardPages } from '@/app/config/dashboard-pages'
 import Link from 'next/link'
 
 interface Props {
@@ -11,7 +11,7 @@ export default async function TaskEditPage({ params }: Props) {
 	return (
 		<div className='p-6'>
 			<div>
-				<Link href={Pages.DASHBOARD}>Back to Dashboard</Link>
+				<Link href={DashboardPages.DASHBOARD}>Back to Dashboard</Link>
 			</div>
 		</div>
 	)

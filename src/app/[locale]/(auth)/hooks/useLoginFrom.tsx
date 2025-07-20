@@ -1,5 +1,7 @@
+import { addToast } from '@heroui/react'
 import { useState, type FormEvent } from 'react'
 import type z from 'zod'
+import { signInWithEmail } from '../actions'
 import useValidateLogin from './useValidateLogin'
 
 export const initFormState = {
@@ -27,16 +29,40 @@ const useLoginFrom = () => {
 		return res.error.format()
 	}
 
-	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+		setIsLoading(true)
+
 		event.preventDefault()
-		const data = Object.fromEntries(new FormData(event.currentTarget))
+		const data: Partial<z.infer<typeof AuthScheme>> = Object.fromEntries(
+			new FormData(event.currentTarget)
+		)
 
 		const errors = validate()
 
 		console.log(errors, 'errors')
+
 		if (errors) {
 			setShowErrors(true)
 			return
+		}
+
+		try {
+			addToast({
+				title: 'We received an email',
+				description: 'A login link has been sent to your email.',
+				color: 'success',
+			})
+
+			await signInWithEmail({ email: data.email || '' })
+		} catch (error) {
+			addToast({
+				title: 'Sooting went wrong ...',
+				description: 'Failed to send OTP link',
+				color: 'danger',
+			})
+		} finally {
+			setIsLoading(false)
+			setUserFormData({})
 		}
 	}
 

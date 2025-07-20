@@ -1,6 +1,6 @@
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 import type { Metadata } from 'next'
-import { AuthForm } from '../_components/AuthForm'
+import { AuthPage } from '../_components/AuthPage'
 
 export const metadata: Metadata = {
 	title: 'Login',
@@ -8,9 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-	return (
-		<div>
-			<AuthForm />
-		</div>
-	)
+	return <AuthPage />
 }
