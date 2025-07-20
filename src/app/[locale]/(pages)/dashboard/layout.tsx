@@ -1,11 +1,6 @@
 import type { PropsWithChildren, ReactNode } from 'react'
 
 import { Sidebar } from '@/components/Sidebar'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-	title: 'Dashboard',
-}
 
 interface Props {
 	modals: ReactNode

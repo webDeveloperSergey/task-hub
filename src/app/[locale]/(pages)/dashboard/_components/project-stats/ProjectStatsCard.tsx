@@ -1,8 +1,8 @@
 import { TYPES_STAT, type IProjectStat } from '@/types/projects.type'
 import { formatMinutes } from '@/utils/format-minutes'
+import { Image } from '@heroui/react'
 import cn from 'clsx'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
 interface Props {
 	projectStat: IProjectStat

@@ -6,7 +6,7 @@ import { getMessages } from 'next-intl/server'
 import { Poppins } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
-import '../../globals.css'
+import '../globals.css'
 import { Providers } from './Providers'
 
 const poppinsSans = Poppins({
